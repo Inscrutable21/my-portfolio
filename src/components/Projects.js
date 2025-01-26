@@ -1,13 +1,14 @@
 'use client';
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import Image from 'next/image';
 
 const projects = [
   {
     title: "AI Chatbot",
     description: "An intelligent conversational AI powered by machine learning, capable of natural language understanding and contextual responses",
     link: "https://github.com/Inscrutable21/Dev-challenge-",
-    image: "https://techcult.com/wp-content/uploads/2022/02/Best-AI-Chatbot-Online-1-scaled.jpg",
+    image: "/images/ai-chatbot.jpg",
     tech: ["React", "Node.js", "Chatpdf API", "MongoDB"],
     features: [
       "Natural Language Processing",
@@ -20,7 +21,7 @@ const projects = [
     title: "Movie Booking Site",
     description: "A modern movie ticket booking platform with an immersive user experience",
     link: "https://github.com/Inscrutable21/movie-booking-site",
-    image: "https://media.istockphoto.com/vectors/movie-tickets-online-booking-vector-id1257217637?k=6&m=1257217637&s=170667a&w=0&h=uiPOUnK7joJ1Ny3boyrMv6BcOPTdOvuVYrM-p39O7Ds=",
+    image: "/images/movie-booking.jpg",
     tech: ["Next.js", "Express", "MongoDB", "Stripe", "TailwindCSS","Prisma"],
     features: [
       "Interactive seat selection",
@@ -34,7 +35,7 @@ const projects = [
     description: "Premium phone number marketplace with advanced filtering and bidding system",
     link: "https://github.com/Inscrutable21/vip-number",
     demo: "https://www.vipnumbershop.in/",
-    image: "https://vipnumberstore.in/assets/img/slide-2.jpg",
+    image: "/images/vip-number.jpg",
     tech: ["React", "Node.js", "MongoDB", "Prisma"],
     features: [
       "Real-time bidding system",
@@ -88,10 +89,12 @@ const Projects = () => {
                     >
                       <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 group-hover:opacity-0 transition-opacity duration-300" />
                       {project.image && (
-                        <img 
+                        <Image 
                           src={project.image} 
                           alt={project.title}
                           className="w-full h-full object-cover rounded-xl"
+                          width={500}
+                          height={300}
                         />
                       )}
                     </motion.div>

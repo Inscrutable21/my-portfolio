@@ -1,15 +1,53 @@
-'use client';
-import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
-import Projects from '../components/Projects';
-import Skills from '../components/Skills';
-import Contact from '../components/Contact';
-import SocialLinks from '../components/SocialLinks';
-import About from '../components/About';
+'use client'
+
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
+// Import all components with proper error boundaries
+const Navbar = dynamic(() => import('../components/Navbar'), { 
+  ssr: true,
+  loading: () => <div>Loading...</div>
+});
+
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div>
+  </div>
+);
+
+const Hero = dynamic(() => import('../components/Hero'), {
+  loading: () => <LoadingSpinner />,
+  ssr: false // Disable SSR for Hero component
+});
+
+const About = dynamic(() => import('../components/About'), {
+  ssr: true,
+  loading: () => <div>Loading...</div>
+});
+
+const Skills = dynamic(() => import('../components/Skills'), {
+  ssr: true,
+  loading: () => <div>Loading...</div>
+});
+
+const Projects = dynamic(() => import('../components/Projects'), {
+  ssr: true,
+  loading: () => <div>Loading...</div>
+});
+
+const Contact = dynamic(() => import('../components/Contact'), {
+  ssr: true,
+  loading: () => <div>Loading...</div>
+});
+
+const SocialLinks = dynamic(() => import('../components/SocialLinks'), {
+  ssr: true,
+  loading: () => <div>Loading...</div>
+});
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-black text-white">
       {/* Animated Background */}
       <div className="fixed inset-0 -z-10">
         {/* Updated grid pattern */}
@@ -22,12 +60,14 @@ export default function Home() {
 
       {/* Components */}
       <Navbar />
-      <Hero />
+      <Suspense fallback={<LoadingSpinner />}>
+        <Hero />
+      </Suspense>
       <About />
       <Skills />
       <Projects />
       <Contact />
       <SocialLinks />
-    </div>
+    </main>
   );
 }

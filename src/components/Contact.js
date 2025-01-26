@@ -69,6 +69,18 @@ const Contact = () => {
             className="glass-morphism p-8 md:p-12 rounded-2xl space-y-8 relative overflow-hidden"
             onSubmit={handleSubmit}
           >
+            {/* Add feedback messages */}
+            {success && (
+              <div className="text-green-400 text-center mb-4">
+                Message sent successfully!
+              </div>
+            )}
+            {error && (
+              <div className="text-red-400 text-center mb-4">
+                Failed to send message. Please try again.
+              </div>
+            )}
+
             {/* Background Gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent" />
 

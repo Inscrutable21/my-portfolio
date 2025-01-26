@@ -1,13 +1,27 @@
 'use client';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { FiGithub, FiLinkedin, FiMail, FiFileText } from 'react-icons/fi';
 import { SiLeetcode } from 'react-icons/si';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isClient, setIsClient] = useState(false);
+
+  // Generate consistent random positions for floating elements
+  const floatingElements = useMemo(() => {
+    return Array(40).fill(null).map((_, i) => ({
+      id: i,
+      initialX: Math.sin(i) * 500,  // Use deterministic values
+      initialY: Math.cos(i) * 500,
+      scale: 0.5 + (i % 5) * 0.1,   // Deterministic scale
+      duration: 3 + (i % 4),        // Deterministic duration
+    }));
+  }, []);
 
   useEffect(() => {
+    setIsClient(true);
+
     const handleMouseMove = (e) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth - 0.5) * 20,
@@ -16,8 +30,15 @@ const Hero = () => {
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
+
+  if (!isClient) {
+    return null; // or a loading state
+  }
 
   const titleVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -207,23 +228,23 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Enhanced Floating Elements */}
+      {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(40)].map((_, i) => (
+        {floatingElements.map((element) => (
           <motion.div
-            key={i}
+            key={element.id}
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-              scale: Math.random() * 0.5 + 0.5,
+              x: element.initialX,
+              y: element.initialY,
+              scale: element.scale,
             }}
             animate={{
               y: [0, -30, 0],
-              x: [0, Math.random() * 20 - 10, 0],
+              x: [element.initialX, element.initialX + 20, element.initialX],
               rotate: [0, 360],
             }}
             transition={{
-              duration: Math.random() * 4 + 3,
+              duration: element.duration,
               repeat: Infinity,
               ease: "linear",
             }}

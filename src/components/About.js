@@ -24,13 +24,13 @@ const About = () => {
             className="space-y-6"
           >
             <p className="text-xl text-gray-300 leading-relaxed">
-              I'm a passionate Full Stack Developer with expertise in modern web technologies.
+              I&apos;m a passionate Full Stack Developer with expertise in modern web technologies.
               My journey in software development has equipped me with strong problem-solving
               skills and a deep understanding of both frontend and backend development.
             </p>
             <p className="text-xl text-gray-300 leading-relaxed">
               I specialize in building scalable web applications using React/Next.js,
-              Node.js, and various databases. I'm always eager to learn new technologies
+              Node.js, and various databases. I&apos;m always eager to learn new technologies
               and take on challenging projects.
             </p>
           </motion.div>
