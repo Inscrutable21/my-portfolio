@@ -66,7 +66,9 @@ const Contact = () => {
             ref={formRef}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="glass-morphism p-8 md:p-12 rounded-2xl space-y-8 relative overflow-hidden"
+            className={`glass-morphism p-8 md:p-12 rounded-2xl space-y-8 relative overflow-hidden ${
+              success ? 'border-green-500/30' : error ? 'border-red-500/30' : 'border-white/10'
+            }`}
             onSubmit={handleSubmit}
           >
             {/* Add feedback messages */}
