@@ -92,9 +92,9 @@ const Projects = () => {
                         <Image 
                           src={project.image} 
                           alt={project.title}
-                          className="w-full h-full object-cover rounded-xl"
                           width={500}
                           height={300}
+                          className="w-full h-full object-cover rounded-xl"
                         />
                       )}
                     </motion.div>

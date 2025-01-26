@@ -71,7 +71,7 @@ const Contact = () => {
             }`}
             onSubmit={handleSubmit}
           >
-            {/* Add feedback messages */}
+            {/* Success and Error Messages */}
             {success && (
               <div className="text-green-400 text-center mb-4">
                 Message sent successfully!
